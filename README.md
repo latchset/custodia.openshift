@@ -1,5 +1,10 @@
 # OpenShift and Container plugins for Custodia
 
+**WARNING: proof of concept**
+
+The code is a simple proof of concept. In the future the plugin will be able
+to get the hostname from the router/service definition.
+
 ## ContainerAuth
 
 Map PID to container engine and container id
@@ -71,3 +76,45 @@ tls_verify = false
 ```
 
 5. Bind-mount socket into container
+
+6. Start an OpenShift app
+
+7. Edit YAML and add annotation
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    latchset.github.io/custodia.hostname: client1.ipa.example
+```
+
+### Example:
+
+
+Invalid request ``custodia-cli get /certs/HTTP/client2.ipa.example``
+
+```
+2017-05-12 16:44:54 - server                           - REQUEST: GET ('', 'secrets', 'certs', 'HTTP', 'client2.ipa.example'), query: {}, cred: {'gid': 1000, 'pid': 32072, 'uid': 1000, 'context': u'unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023'}, client_id: 32072, headers: {'accept-encoding': 'gzip, deflate', 'connection': 'keep-alive', 'accept': '*/*', 'user-agent': 'python-requests/2.10.0', 'host': 'localhost', 'content-type': 'application/json'}, body: None
+2017-05-12 16:44:54 - ContainerAuth-[auth:container]   - Detected docker://e672868dfdadaa30b0a0a84d20317941e7bba741f893b84c713a430fc60d1076 for pid 32072
+2017-05-12 16:44:54 - SimplePathAuthz-[authz:paths]    - PASS: '32072' authorized for '/secrets'
+2017-05-12 16:44:54 - OpenShiftAuthz-[authz:openshift] - Found pod /api/v1/namespaces/test/pods/deployment-example-1-s0361 for docker://e672868dfdadaa30b0a0a84d20317941e7bba741f893b84c713a430fc60d1076
+2017-05-12 16:44:54 - OpenShiftAuthz-[authz:openshift] - Path ('', 'secrets', 'certs', 'HTTP', 'client2.ipa.example') does not match hostname 'client1.ipa.example' for docker://e672868dfdadaa30b0a0a84d20317941e7bba741f893b84c713a430fc60d1076
+2017-05-12 16:44:54 - OpenShiftAuthz-[authz:openshift] - FAIL: '32072' authorized for '/secrets/certs/HTTP/client2.ipa.example'
+2017-05-12 16:44:54 - HTTPRequestHandler               - FAIL: '32072' authorized for '('', 'secrets', 'certs', 'HTTP', 'client2.ipa.example')'
+2017-05-12 16:44:54 - server                           - code 403, message Forbidden
+```
+
+Matching request ``custodia-cli get /certs/HTTP/client1.ipa.example``
+```
+127.0.0.1 - - [12/May/2017 16:44:54] "GET /secrets/certs/HTTP/client2.ipa.example HTTP/1.1" 403 -
+2017-05-12 16:44:58 - server                           - REQUEST: GET ('', 'secrets', 'certs', 'HTTP', 'client1.ipa.example'), query: {}, cred: {'gid': 1000, 'pid': 32086, 'uid': 1000, 'context': u'unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023'}, client_id: 32086, headers: {'accept-encoding': 'gzip, deflate', 'connection': 'keep-alive', 'accept': '*/*', 'user-agent': 'python-requests/2.10.0', 'host': 'localhost', 'content-type': 'application/json'}, body: None
+2017-05-12 16:44:58 - ContainerAuth-[auth:container]   - Detected docker://e672868dfdadaa30b0a0a84d20317941e7bba741f893b84c713a430fc60d1076 for pid 32086
+2017-05-12 16:44:58 - SimplePathAuthz-[authz:paths]    - PASS: '32086' authorized for '/secrets'
+2017-05-12 16:44:58 - OpenShiftAuthz-[authz:openshift] - Found pod /api/v1/namespaces/test/pods/deployment-example-1-s0361 for docker://e672868dfdadaa30b0a0a84d20317941e7bba741f893b84c713a430fc60d1076
+2017-05-12 16:44:58 - OpenShiftAuthz-[authz:openshift] - Container /api/v1/namespaces/test/pods/deployment-example-1-s0361 matches latchset.github.io/custodia.hostname: 'client1.ipa.example'
+2017-05-12 16:44:58 - OpenShiftAuthz-[authz:openshift] - PASS: '32086' authorized for '/secrets/certs/HTTP/client1.ipa.example'
+2017-05-12 16:44:58 - IPACertRequest-[store:cert]      - Found cached certificate for HTTP/client1.ipa.example@IPA.EXAMPLE
+2017-05-12 16:44:58 - Secrets-[/secrets/certs]         - ALLOWED: '<pid=32086 uid=1000 gid=1000>' requested key 'HTTP/client1.ipa.example'
+127.0.0.1 - - [12/May/2017 16:44:58] "GET /secrets/certs/HTTP/client1.ipa.example HTTP/1.1" 200 -
+```
