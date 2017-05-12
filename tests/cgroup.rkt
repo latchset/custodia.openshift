@@ -1,0 +1,11 @@
+11:perf_event:/
+10:devices:/machine.slice/machine-rkt\x2d82570cee\x2dea38\x2d4877\x2dbdbf\x2d6c659e68926f.scope
+9:freezer:/
+8:pids:/machine.slice/machine-rkt\x2d82570cee\x2dea38\x2d4877\x2dbdbf\x2d6c659e68926f.scope
+7:blkio:/machine.slice/machine-rkt\x2d82570cee\x2dea38\x2d4877\x2dbdbf\x2d6c659e68926f.scope
+6:hugetlb:/
+5:memory:/machine.slice/machine-rkt\x2d82570cee\x2dea38\x2d4877\x2dbdbf\x2d6c659e68926f.scope/system.slice/etcd.service
+4:cpuset:/
+3:net_cls,net_prio:/
+2:cpu,cpuacct:/machine.slice/machine-rkt\x2d82570cee\x2dea38\x2d4877\x2dbdbf\x2d6c659e68926f.scope/system.slice/etcd.service
+1:name=systemd:/machine.slice/machine-rkt\x2d82570cee\x2dea38\x2d4877\x2dbdbf\x2d6c659e68926f.scope/system.slice/etcd.service

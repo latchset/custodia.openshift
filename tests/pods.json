@@ -1,0 +1,267 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "metadata": {
+        "annotations": {
+          "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"test\",\"name\":\"deployment-example-1\",\"uid\":\"59c777a1-3705-11e7-8735-54ee7547ca7b\",\"apiVersion\":\"v1\",\"resourceVersion\":\"1797\"}}\n",
+          "openshift.io/deployment-config.latest-version": "1",
+          "openshift.io/deployment-config.name": "deployment-example",
+          "openshift.io/deployment.name": "deployment-example-1",
+          "openshift.io/generated-by": "OpenShiftNewApp",
+          "openshift.io/scc": "restricted"
+        },
+        "creationTimestamp": "2017-05-12T11:23:01Z",
+        "generateName": "deployment-example-1-",
+        "labels": {
+          "app": "deployment-example",
+          "deployment": "deployment-example-1",
+          "deploymentconfig": "deployment-example"
+        },
+        "name": "deployment-example-1-s0361",
+        "namespace": "test",
+        "resourceVersion": "1813",
+        "selfLink": "/api/v1/namespaces/test/pods/deployment-example-1-s0361",
+        "uid": "5bb70a97-3705-11e7-8735-54ee7547ca7b"
+      },
+      "spec": {
+        "containers": [
+          {
+            "image": "openshift/deployment-example@sha256:ea9135488f323060cb18ab3ec06286cd49e4b3a611fce1a6a442651ecf421f99",
+            "imagePullPolicy": "Always",
+            "name": "deployment-example",
+            "ports": [
+              {
+                "containerPort": 8080,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {},
+            "securityContext": {
+              "capabilities": {
+                "drop": [
+                  "KILL",
+                  "MKNOD",
+                  "SETGID",
+                  "SETUID",
+                  "SYS_CHROOT"
+                ]
+              },
+              "privileged": false,
+              "runAsUser": 1000050000,
+              "seLinuxOptions": {
+                "level": "s0:c7,c4"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "volumeMounts": [
+              {
+                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                "name": "default-token-x2grq",
+                "readOnly": true
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "imagePullSecrets": [
+          {
+            "name": "default-dockercfg-qvhdx"
+          }
+        ],
+        "nodeName": "192.168.7.101",
+        "restartPolicy": "Always",
+        "securityContext": {
+          "fsGroup": 1000050000,
+          "seLinuxOptions": {
+            "level": "s0:c7,c4"
+          }
+        },
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "volumes": [
+          {
+            "name": "default-token-x2grq",
+            "secret": {
+              "defaultMode": 420,
+              "secretName": "default-token-x2grq"
+            }
+          }
+        ]
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-05-12T11:23:01Z",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-05-12T11:23:07Z",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-05-12T11:23:01Z",
+            "status": "True",
+            "type": "PodScheduled"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "containerID": "docker://e672868dfdadaa30b0a0a84d20317941e7bba741f893b84c713a430fc60d1076",
+            "image": "openshift/deployment-example@sha256:ea9135488f323060cb18ab3ec06286cd49e4b3a611fce1a6a442651ecf421f99",
+            "imageID": "docker-pullable://docker.io/openshift/deployment-example@sha256:ea9135488f323060cb18ab3ec06286cd49e4b3a611fce1a6a442651ecf421f99",
+            "lastState": {},
+            "name": "deployment-example",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2017-05-12T11:23:07Z"
+              }
+            }
+          }
+        ],
+        "hostIP": "192.168.7.101",
+        "phase": "Running",
+        "podIP": "172.17.0.3",
+        "startTime": "2017-05-12T11:23:01Z"
+      }
+    },
+    {
+      "metadata": {
+        "annotations": {
+          "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"test\",\"name\":\"hello-1\",\"uid\":\"2587ed55-36fe-11e7-8735-54ee7547ca7b\",\"apiVersion\":\"v1\",\"resourceVersion\":\"1084\"}}\n",
+          "openshift.io/deployment-config.latest-version": "1",
+          "openshift.io/deployment-config.name": "hello",
+          "openshift.io/deployment.name": "hello-1",
+          "openshift.io/scc": "restricted"
+        },
+        "creationTimestamp": "2017-05-12T10:31:29Z",
+        "generateName": "hello-1-",
+        "labels": {
+          "deployment": "hello-1",
+          "deploymentconfig": "hello",
+          "run": "hello"
+        },
+        "name": "hello-1-r9mzp",
+        "namespace": "test",
+        "resourceVersion": "1101",
+        "selfLink": "/api/v1/namespaces/test/pods/hello-1-r9mzp",
+        "uid": "290b6dc3-36fe-11e7-8735-54ee7547ca7b"
+      },
+      "spec": {
+        "containers": [
+          {
+            "image": "openshift/hello-openshift",
+            "imagePullPolicy": "Always",
+            "name": "hello",
+            "resources": {},
+            "securityContext": {
+              "capabilities": {
+                "drop": [
+                  "KILL",
+                  "MKNOD",
+                  "SETGID",
+                  "SETUID",
+                  "SYS_CHROOT"
+                ]
+              },
+              "privileged": false,
+              "runAsUser": 1000050000,
+              "seLinuxOptions": {
+                "level": "s0:c7,c4"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "volumeMounts": [
+              {
+                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                "name": "default-token-x2grq",
+                "readOnly": true
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "imagePullSecrets": [
+          {
+            "name": "default-dockercfg-qvhdx"
+          }
+        ],
+        "nodeName": "192.168.7.101",
+        "restartPolicy": "Always",
+        "securityContext": {
+          "fsGroup": 1000050000,
+          "seLinuxOptions": {
+            "level": "s0:c7,c4"
+          }
+        },
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "volumes": [
+          {
+            "name": "default-token-x2grq",
+            "secret": {
+              "defaultMode": 420,
+              "secretName": "default-token-x2grq"
+            }
+          }
+        ]
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-05-12T10:31:29Z",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-05-12T10:31:41Z",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-05-12T10:31:29Z",
+            "status": "True",
+            "type": "PodScheduled"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "containerID": "docker://4fe7e7938dcaa25a0c940b1f6e122b4153eecdc0b9ec5f38914337fb16e2d11e",
+            "image": "openshift/hello-openshift",
+            "imageID": "docker-pullable://docker.io/openshift/hello-openshift@sha256:5c33481522e0d06726e8445a45b86cc0508e1caa7f421b75ad2078947458e32b",
+            "lastState": {},
+            "name": "hello",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2017-05-12T10:31:40Z"
+              }
+            }
+          }
+        ],
+        "hostIP": "192.168.7.101",
+        "phase": "Running",
+        "podIP": "172.17.0.4",
+        "startTime": "2017-05-12T10:31:29Z"
+      }
+    }
+  ],
+  "kind": "PodList",
+  "metadata": {
+    "resourceVersion": "1972",
+    "selfLink": "/api/v1/namespaces/test/pods"
+  }
+}

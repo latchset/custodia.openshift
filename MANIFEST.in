@@ -1,0 +1,4 @@
+include setup.py setup.cfg
+include Makefile LICENSE README
+include *.md *.ini .coveragerc
+include tests.py

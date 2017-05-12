@@ -1,0 +1,11 @@
+11:perf_event:/
+10:devices:/machine.slice/machine-DebianJessie.scope
+9:freezer:/
+8:pids:/machine.slice/machine-DebianJessie.scope
+7:blkio:/machine.slice/machine-DebianJessie.scope
+6:hugetlb:/
+5:memory:/machine.slice/machine-DebianJessie.scope
+4:cpuset:/
+3:net_cls,net_prio:/
+2:cpu,cpuacct:/machine.slice/machine-DebianJessie.scope
+1:name=systemd:/machine.slice/machine-DebianJessie.scope

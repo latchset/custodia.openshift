@@ -1,0 +1,48 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "metadata": {
+        "creationTimestamp": "2017-05-12T11:23:28Z",
+        "name": "testroute",
+        "namespace": "test",
+        "resourceVersion": "1829",
+        "selfLink": "/oapi/v1/namespaces/test/routes/testroute",
+        "uid": "6be474ad-3705-11e7-8735-54ee7547ca7b"
+      },
+      "spec": {
+        "host": "testapp.ipa.example",
+        "port": {
+          "targetPort": "8080-tcp"
+        },
+        "to": {
+          "kind": "Service",
+          "name": "deployment-example",
+          "weight": 100
+        },
+        "wildcardPolicy": "None"
+      },
+      "status": {
+        "ingress": [
+          {
+            "conditions": [
+              {
+                "lastTransitionTime": "2017-05-12T11:23:28Z",
+                "status": "True",
+                "type": "Admitted"
+              }
+            ],
+            "host": "testapp.ipa.example",
+            "routerName": "router",
+            "wildcardPolicy": "None"
+          }
+        ]
+      }
+    }
+  ],
+  "kind": "RouteList",
+  "metadata": {
+    "resourceVersion": "2002",
+    "selfLink": "/oapi/v1/namespaces/test/routes"
+  }
+}
