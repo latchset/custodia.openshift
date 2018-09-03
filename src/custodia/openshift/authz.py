@@ -65,7 +65,7 @@ class OpenShiftHostnameAuthz(HTTPAuthorizer):
     def find_pod(self, data, containerid):
         for pod in data['items']:
             for status in pod[u'status'][u'containerStatuses']:
-                if status[u'containerID'] == containerid:
+                if u'containerID' in status and status[u'containerID'] == containerid:
                     return pod
 
     def handle(self, request):
